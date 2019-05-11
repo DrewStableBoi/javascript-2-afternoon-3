@@ -120,14 +120,25 @@ contains(names, 'Colt', function(result){
 */
 
 function uniq(array, callback) {
-  const newArray = [];
+
   for (i = 0; i < array.length; i++) {
-    if (array[i] === array[i+n]) {
-      newArray.push(array[i]);
-    }
+      for (n = array.length - 1; n > i; n--) {
+
+            if (array[i] === array[n]) {
+              array.splice(n,1);
+            }
+        
+      }
   }
-  callback(newArray);
+  callback(array);
 }
+
+// function uniq(array, callback) {
+//   const newArray = array.filter(function(item, index, inputArray) {
+//     return inputArray.indexOf(item) == index;
+//   })
+//   callback(newArray);
+// }
 
 // Do not edit the code below.
 uniq(names, function(uniqArr){
@@ -146,9 +157,8 @@ uniq(names, function(uniqArr){
 
 function each(names, callback) {
   for(i=0; i < names.length; i++) {
-    callback(names[i], names.indexOf[i]);
+    callback(names[i],i);
   }
-  callback(names);
 }
 
 // Do not edit the code below.
@@ -167,8 +177,9 @@ each(names, function(item, indice){
 */
 
 function getUserById(users, id, callback) {
-  if (users.id === id) {
-    callback(users);
+  for (i = 0; i < users.length; i++) {
+    if (users[i].id === id)
+    callback(users[i]);
   }
 }
 
